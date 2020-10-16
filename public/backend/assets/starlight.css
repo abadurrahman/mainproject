@@ -1,0 +1,45 @@
+.bootstrap-tagsinput {
+  border-color: rgba(0, 0, 0, 0.15);
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  padding: 0 6px 5px;
+  min-height: 40px;
+  display: block;
+  border-radius: 3px;
+}
+.bootstrap-tagsinput .label {
+  background-color: #5e77f3;
+  color: #fff;
+  font-size: 0.875rem;
+  padding: 2px 8px;
+  margin-top: 6px;
+  display: inline-block;
+  border-radius: 2px;
+}
+.bootstrap-tagsinput input {
+  padding-top: 8px;
+}
+.bootstrap-tagsinput .tag [data-role="remove"] {
+  opacity: .75;
+}
+.bootstrap-tagsinput .tag [data-role="remove"]::after {
+  content: '\f2d7';
+  font-family: 'Ionicons';
+  font-size: 11px;
+}
+.bootstrap-tagsinput .tag [data-role="remove"]:hover, .bootstrap-tagsinput .tag [data-role="remove"]:focus, .bootstrap-tagsinput .tag [data-role="remove"]:active {
+  opacity: 1;
+  box-shadow: none;
+}
+
+
+.bootstrap-tagsinput .tag [data-role="remove"]::after {
+  content: '\f2d7';
+  font-family: 'Ionicons';
+  font-size: 11px;
+  content: "x";
+  padding: 0px 2px;
+  margin-left: 2px;
+  cursor: pointer;
+}
+
