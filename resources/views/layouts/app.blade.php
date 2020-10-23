@@ -5,10 +5,11 @@
     $fotter=DB::table('sliders')->where('fotter_slider',1)->where('status',1)->orderBy('id','DESC')->get();
 @endphp
 <!DOCTYPE html>
-<html>
+<html> 
 <head>
 <title>Ecommerce</title>
 <!-- for-mobile-apps -->
+<meta name="csrf" value="{{ csrf_token() }}">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Smart Shop Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -42,9 +43,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,900,900italic,700italic' rel='stylesheet' type='text/css'>
 <script src="{{asset('fontend/js/jquery.easing.min.js')}}"></script>
 
-
-
-
 </head>
 <body>
 <!-- header -->
@@ -55,14 +53,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <ul>
             <li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><a href="mailto:info@example.com">{{$setting->email}}</a></li>
            <li><a href="#" data-toggle="modal" data-target="#exampleModal">My Order Traking</a></li>
-            <li><a href="#"><div class="section_room">
-                    <select id="country" onchange="change_country(this.value)" class="frm-field required">
-                        <option value="null">Show By Langues</option>
-                         @foreach( $category as $cat)                       
-                        <option value="null">{{ $cat->category_name }}</option>
-                         @endforeach 
-                    </select>
-                </div></a></li>
+            @php 
+             $wishlist=DB::table('wishlists')->where('user_id',Auth::id())->get();
+            @endphp
+             @guest
+             @else
+           <li>
+           <a href="#" class="wishlist_count">{{ count($wishlist) }}</a>
+            <a href="{{ route('user.wishlist') }}" style="margin-right:20px;">Wishlist</a>
+              @endguest
+           </li>
+
+          
         </ul>
     </div>
 </div>
@@ -170,15 +172,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <div class="top_nav_right">
             <div class="cart box_1">
-                        <a href="checkout.html">
+                        <a href="{{ route('show.cart') }}">
                             <h3> <div class="total">
                                 <i class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></i>
-                                <span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)</div>
+                                </span> (<span class="">{{ Cart::count() }}</span> items)
+                                </div>
                                 
                             </h3>
                         </a>
-                        <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
-                        
+                         @if(Session::has('coupon'))
+                        <p><a href="#" class="simpleCart_empty"> $ {{ Session::get('coupon')['balance'] }}</a></p>
+                        @else
+                        <p><a href="#" class="simpleCart_empty">{{ Cart::Subtotal() }}</a></p>
+                        @endif
             </div>  
         </div>
         
@@ -312,7 +318,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                                 
                                             </div>
                                             <div class="sign-up">
-                                                <input type="submit" value="REGISTER NOW" >
+                                                <input type="submit" value="Register Now" >
                                             </div>
                                             
                                         </form>
@@ -350,10 +356,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
                                             </div>
                                             <div class="sign-in">
-                                                <input type="submit" value="SIGNIN" >
+                                                <input type="submit" value="Sign in" >
                                             </div>
                                         </form>
-                                        
+                                        <br>
+                                        <div class="sign-in">
+                                                <input type="submit" value="Log in with google" >
+                                        </div>
+                                        <br>
+                                        <div class="sign-in">
+                                                <input type="submit" value="Log in with facebook" >
+                                        </div>
                                     </div>
                                     <div class="clearfix"></div>
                                 </div>

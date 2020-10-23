@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('content')
-@include('layouts.menubar')
-
+ 
 @php 
     $new_one=DB::table('products')->where('newarrivals_one',1)->orderBy('id','DESC')->first();
     $new_two=DB::table('products')->where('newarrivals_two',1)->orderBy('id','DESC')->first();
@@ -12,9 +11,11 @@
     $special=DB::table('products')->where('special_offer',1)->where('status',1)->get();
     $collection=DB::table('products')->where('collection',1)->where('status',1)->get();  
 @endphp
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<link rel="stylesheet" href="sweetalert2.min.css">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <!-- content -->
-
+ 
 <div class="new_arrivals">
     <div class="container">
         <h3><span>new </span>arrivals</h3>
@@ -173,7 +174,10 @@
                                                 <a href="{{ url('product/details/'.$row->id.'/'.$row->product_name) }}" class="link-product-add-cart">Quick View</a>
                                             </div>
                                           </div>
-                                 <a href="{{ URL::to('add/wishlist/'.$row->id) }}" class="product-top"><span class="glyphicon glyphicon-heart" aria-hidden="true"></a>
+                                         <!--  wishlist -->
+                                 <!-- <a href="{{ URL::to('add/wishlist/'.$row->id) }}" class="product-top"><span class="glyphicon glyphicon-heart" aria-hidden="true"></a> -->
+                                 <a href="#" class="product-top addwishlist" data-id="{{ $row->id }}"><span class="glyphicon glyphicon-heart" aria-hidden="true"></a>
+                                         
                                   @if($row->discount_price == NULL)
                                      <span class="product-new-top">New</span>
                                     @else
@@ -202,6 +206,7 @@
                                     </div>
                                     <div class="product_extras">
                                         <a href="#" id="{{ $row->id }}" class="product_cart_button item_add single-item hvr-outline-out button2 addcart" data-toggle="modal" data-target="#cartmodal"  onclick="productview(this.id)">Add to cart</a>
+                                       <!-- <button class="product_cart_button item_add single-item hvr-outline-out button2 addcart" data-id="{{$row->id}}">Add To Cart</button>  -->
                                                  
                                     </div>                                    
                                 </div>
@@ -340,14 +345,12 @@
               <ul class="list-group">
                 <li class="list-group-item"> <h5 class="card-title" id="pname"></h5></span></li>
              <li class="list-group-item">Product code: <span id="pcode"> </span></li>
-              <li class="list-group-item">Category:  <span id="pcat"> </span></li>
-              <li class="list-group-item">SubCategory:  <span id="psubcat"> </span></li>
-              <li class="list-group-item">Brand: <span id="pbrand"> </span></li>
+              
               <li class="list-group-item">Stock: <span class="badge " style="background: green; color:white;">Available</span></li>
             </ul>
           </div>
           <div class="col-md-4 ">
-               <form action="" method="post">
+               <form action="{{ route('insert.into.cart') }}" method="post">
                 @csrf
                 <input type="hidden" name="product_id" id="product_id">
                 <div class="form-group" id="colordiv">
@@ -376,6 +379,84 @@
 <!--modal end-->
 
 
+<script type="text/javascript">
+    function productview(id){
+          $.ajax({
+                     url: "{{  url('/cart/product/view/') }}/"+id,
+                     type:"GET",
+                     dataType:"json",
+                     success:function(data) {
+                       $('#pname').text(data.product.product_name);
+                       $('#pimage').attr('src',data.product.image_one);
+                       $('#pcode').text(data.product.product_code);
+                       $('#product_id').val(data.product.id);
+
+                        var d =$('select[name="size"]').empty();
+                         $.each(data.size, function(key, value){
+                             $('select[name="size"]').append('<option value="'+ value +'">' + value + '</option>');
+                              if (data.size == "") {
+                                     $('#sizediv').hide();   
+                              }else{
+                                    $('#sizediv').show();
+                              } 
+                         });
+
+                        var d =$('select[name="color"]').empty();
+                         $.each(data.color, function(key, value){
+                             $('select[name="color"]').append('<option value="'+ value +'">' + value + '</option>');
+                               if (data.color == "") {
+                                     $('#colordiv').hide();
+                              } else{
+                                   $('#colordiv').show();
+                              }
+                         });
+             }
+      })
+    }
+</script>
+
+
+
+<!-- <script type="text/javascript">
+      $(document).ready(function() {
+            $('.addcart').on('click', function(){  
+              var id = $(this).data('id');
+              if(id) {
+                 $.ajax({
+                     url: "{{  url('/add/to/cart/') }}/"+id,
+                     type:"GET",
+                     dataType:"json",
+                     success:function(data) {
+                       const Toast = Swal.mixin({
+                          toast: true,
+                          position: 'top-end',
+                          showConfirmButton: false,
+                          timer: 3000
+                        })
+
+                       if($.isEmptyObject(data.error)){
+                            Toast.fire({
+                              type: 'success',
+                              title: data.success
+                            })
+                       }else{
+                             Toast.fire({
+                                type: 'error',
+                                title: data.error
+                            })
+                       }
+
+                     },
+                    
+                 });
+             } else {
+                 alert('danger');
+             }
+              e.preventDefault();
+         });
+     });
+
+</script> -->
 
 <script type="text/javascript">
       $(document).ready(function() {
@@ -417,5 +498,7 @@
      });
 
 </script>
+
+
 
 @endsection

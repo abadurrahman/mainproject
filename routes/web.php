@@ -4,6 +4,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {return view('pages.index');});
 Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
+
+//auth & user
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/password/change', 'HomeController@changePassword')->name('password.change');
+Route::post('/password/update', 'HomeController@updatePassword')->name('password.update');
+Route::get('/user/logout', 'HomeController@Logout')->name('user.logout');
+
 //--admin section
 //--Categories
 Route::get('admin/add/category', 'Admin\CategoryController@create')->name('add.category'); 
@@ -199,6 +206,9 @@ Route::post('store/newslater', 'FrontendController@StoreNewslater')->name('store
 
 Route::get('/pages/{id}', 'PageController@pageView');
 Route::get('/product/details/{id}/{product_name}', 'PageController@ProductView');
+Route::post('/cart/product/add/{id}', 'PageController@AddCart');
+
+/* Route::get('/products/{id}', 'PageController@productsView');*/
 
 //electronics
 Route::get('product/electronics','PageController@Electronic')->name('product.electronics');
@@ -208,3 +218,25 @@ Route::get('page/contact','PageController@contact')->name('page.contact');
 
 //wishlists
 Route::get('add/wishlist/{id}','WishlistController@AddWishlist');
+ 
+//cart
+Route::get('add/to/cart/{id}','CartController@AddCart');
+Route::get('check','CartController@check');
+Route::get('products/cart','CartController@showCart')->name('show.cart');
+Route::get('remove/cart/{rowId}','CartController@removeCart');
+Route::post('update/cart/item','CartController@UpdateCart')->name('update.cartitem');
+Route::get('cart/product/view/{id}','CartController@ViewProduct');
+Route::post('insert/into/cart/','CartController@InsertCart')->name('insert.into.cart');
+Route::get('user/checkout/','CartController@Checkout')->name('user.checkout');
+Route::get('user/wishlist/','CartController@Wishlist')->name('user.wishlist');
+Route::post('user/apply/coupon/','CartController@Coupon')->name('apply.coupon');
+Route::get('coupon/remove/','CartController@CouponRemove')->name('coupon.remove');
+Route::get('payment/page/','CartController@PymentPage')->name('payment.step');
+
+
+//payment methods
+Route::post('user/payment/process/','PaymentController@payment')->name('payment.process');
+Route::post('user/stripe/charge/','PaymentController@STripeCharge')->name('stripe.charge');
+
+Route::get('success/list/','PaymentController@SuccessList')->name('success.orderlist');
+Route::get('request/return/{id}','PaymentController@RequestReturn');

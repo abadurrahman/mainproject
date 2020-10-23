@@ -67,7 +67,8 @@
 							<label for="rating1">1</label>
 						</span>
 					</div>
-					
+				<form action="{{ url('cart/product/add/'.$product->id) }}" method="post">
+								@csrf
 					<div class="color-quality col-md-4">
 						<div class="color-quality-right">
 							<h5>Quality :</h5>
@@ -111,10 +112,10 @@
 					</div>
 					<br><br><br>
 					<div class="occasion-cart">
-						<a href="#" class="item_add hvr-outline-out button2">Add to cart</a>
-					</div>
-					
-		</div>
+						<button type="submit" style="margin-top: 30px; margin-left: 20px;" class="item_add hvr-outline-out button2">Add to Cart</button>
+					</div>	
+		       </div>
+		       </form>
 				<div class="clearfix"> </div>
 
 				<div class="bootstrap-tab animated wow slideInUp animated" data-wow-delay=".5s" style="visibility: visible; animation-delay: 0.5s; animation-name: slideInUp;">
