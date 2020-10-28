@@ -9,7 +9,12 @@ use Image;
 use App\Brand;
 
 class BlogController extends Controller
-{
+{  
+     public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+    
      public function index()
     {
         $blog=DB::table('blogs')->join('blogcategories','blogs.blogcategory_id','blogcategories.id')

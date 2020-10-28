@@ -49,7 +49,7 @@
             <div class="col-md-6 ">
                <div class="form-group">
               <label class="form-control-label" for="example3cols1Input">Category</label>
-              <select class="form-control" id="exampleFormControlSelect1" name="category_id">
+              <select class="form-control" id="exampleFormControlSelect1" required="" name="category_id">
                 <option label="Choose Category"></option>
                 @foreach($category as $row)
                       <option value="{{ $row->id }}">{{  $row->category_name }}</option>

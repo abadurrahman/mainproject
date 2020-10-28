@@ -1,17 +1,28 @@
-<?php
+<?php 
 
-use Illuminate\Support\Facades\Route;
 Route::get('/', function () {return view('pages.index');});
-Auth::routes(['verify' => true]);
-Route::get('/home', 'HomeController@index')->name('home');
 
 //auth & user
+Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/password/change', 'HomeController@changePassword')->name('password.change');
 Route::post('/password/update', 'HomeController@updatePassword')->name('password.update');
 Route::get('/user/logout', 'HomeController@Logout')->name('user.logout');
 
-//--admin section
+//admin=======
+Route::get('admin/home', 'AdminController@index');
+Route::get('admin', 'Admin\LoginController@showLoginForm')->name('admin.login');
+Route::post('admin', 'Admin\LoginController@login');
+        // Password Reset Routes...
+Route::get('admin-password/reset', 'Admin\ForgotPasswordController@showLinkRequestForm')->name('admin.password.request');
+Route::get('admin-password/email', 'Admin\ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
+Route::get('admin-password/reset/{token}', 'Admin\ResetPasswordController@showResetForm')->name('admin.password.reset');
+Route::get('admin-password/reset', 'Admin\ResetPasswordController@reset');
+Route::get('/admin/Change/Password','AdminController@ChangePassword')->name('admin.password.change');
+Route::post('/admin/password/update','AdminController@Update_pass')->name('admin.password.update'); 
+Route::get('admin/logout', 'AdminController@logout')->name('admin.logout');
+
+     //admin section----------------
 //--Categories
 Route::get('admin/add/category', 'Admin\CategoryController@create')->name('add.category'); 
 Route::get('admin/all/category', 'Admin\CategoryController@index')->name('all.category');    
@@ -27,7 +38,7 @@ Route::post('admin/store/subcategory', 'Admin\SubcategoryController@storesubcatg
 Route::get('delete/subcategory/{id}','Admin\SubcategoryController@DeleteSubCategory');
 Route::get('edit/subcategory/{id}','Admin\SubcategoryController@EditSubCategory');
 Route::post('update/subcategory/{id}','Admin\SubcategoryController@UpdateSubCategory');
-
+ 
  //sliders routes=====
 Route::get('admin/slider/all', 'Admin\SliderController@index')->name('all.slider');
 Route::get('admin/slider/add', 'Admin\SliderController@create')->name('add.slider');

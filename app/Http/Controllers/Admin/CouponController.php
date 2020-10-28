@@ -9,6 +9,12 @@ use App\Coupon;
 
 class CouponController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+
     public function index()
     {
         $coupon=DB::table('coupons')->orderBy('id','DESC')->get();

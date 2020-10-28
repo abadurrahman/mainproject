@@ -8,6 +8,11 @@ use App\Brand;
 
 class BrandController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+
      public function index()
     {
         $brand=DB::table('brands')->orderBy('id','DESC')->get();

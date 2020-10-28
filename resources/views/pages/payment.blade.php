@@ -18,10 +18,7 @@
 <section id="cart_items">
 		<div class="container">
 			
-			<div class="col-md-6">
-				<a href="{{url('/')}}">Home/Check Out</a>	
-			</div>
-
+			
 			
 <br><br><br>
 			

@@ -9,6 +9,12 @@ use App\Blogcategory;
 
 class BlogcategoryController extends Controller
 {
+   public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+
+    
     public function index()
     {
         $blogcategory=DB::table('blogcategories')->orderBy('id','DESC')->get();

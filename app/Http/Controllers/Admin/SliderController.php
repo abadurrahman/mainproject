@@ -8,7 +8,12 @@ use DB;
 use Image;
 
 class SliderController extends Controller
-{
+{   
+     public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+    
      public function index()
     {
     	$slider=DB::table('sliders')->get();

@@ -49,7 +49,7 @@
             <div class="col-md-4">
               <div class="form-group">
                 <label class="form-control-label" for="example3cols1Input">Image Two</label>
-                <input type="file" class="form-control" id="example3cols1Input" name="image_two" onchange="readURL2(this);" accept="image"> 
+                <input type="file" class="form-control" id="example3cols1Input" name="image_two" onchange="readURL2(this);" accept="image" required=""> 
                 <img src="#" id="two" style="margin-top:25px;" >             
               </div>
             </div> 
@@ -57,7 +57,7 @@
              <div class="col-md-4">
               <div class="form-group">
                 <label class="form-control-label" for="example3cols1Input">Image Three</label>
-                <input type="file" class="form-control" id="example3cols1Input" name="image_three" onchange="readURL3(this);" accept="image"> 
+                <input type="file" class="form-control" id="example3cols1Input" name="image_three" onchange="readURL3(this);" accept="image" required=""> 
                 <img src="#" id="three" style="margin-top:25px;" >             
               </div>
             </div> 

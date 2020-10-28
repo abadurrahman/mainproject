@@ -9,6 +9,11 @@ use Image;
 
 class WebsettingController extends Controller
 {
+     public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+
     public function index()
     {
     	$websetting=DB::table('websettings')->get();

@@ -1,7 +1,5 @@
 @extends('layouts.admin')
 
-@section('title', 'Category')
-
 @section('content')
 <div class="header bg-primary pb-6">
     <div class="container-fluid">

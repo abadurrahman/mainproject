@@ -25,11 +25,10 @@
    <link rel="stylesheet" href="{{ asset('backend/assets/css/argon.css?v=1.1.0') }}" type="text/css">
 
    <link rel="stylesheet" type="text/css" href="{{ asset('backend/assets/starlight.css') }}">
-
-   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
     <!-- Ajax CDN -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css">
     <!-- sweet alerts -->
     <link rel="stylesheet" href="{{ asset('backend/assets/css/sweet-alert.min.css') }}">
     <!-- Toastr Css -->
@@ -69,7 +68,7 @@
            <!-- Nav items -->
            <ul class="navbar-nav">
              <li class="nav-item">
-               <a class="nav-link" href="{{ route('home') }}">
+               <a class="nav-link" href="{{ url('admin/home') }}">
                  <i class="ni ni-shop text-primary"></i>
                  <span class="nav-link-text">Dashboard</span>
                </a>
@@ -520,14 +519,11 @@
                    <span>Activity</span>
                  </a>
                  <div class="dropdown-divider"></div>
-                 <a class="dropdown-item" href="{{ url('logout') }}" onclick="event.preventDefault();
-                 document.getElementById('logout-form').submit();">
+                 <a class="dropdown-item" href="{{ route('admin.logout') }}">
                  <i class="fa fa-sign-out fa-lg"></i>
                  <span>{{ __('Logout') }}</span>
                 </a>
-                <form id="logout-form" action="{{ url('logout') }}" method="POST" style="display: none;">
-                 @csrf
-                </form>
+                
                </div>
              </li>
            </ul>
@@ -535,13 +531,10 @@
        </div>
      </nav>
      </div>
+         <!-- Header -->
      @endguest
-     <!-- Header -->
+ 
      @yield('content')
-
-
-
-     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
    
    <!-- Argon Scripts -->
    <!-- Core -->
@@ -568,16 +561,16 @@
     <script src="{{asset('backend/assets/vendor/datatables.net-buttons/js/buttons.print.min.js')}}"></script>
     <script src="{{asset('backend/assets/vendor/datatables.net-select/js/dataTables.select.min.js')}}"></script>
 
-   <!-- Argon JS -->
-   <script src="{{ asset('backend/assets/js/argon.js?v=1.1.0') }}"></script>
-   <!-- Demo JS - remove this in your project -->
-   <script src="{{ asset('backend/assets/js/demo.min.js') }}"></script>
+    <!-- Argon JS -->
+    <script src="{{ asset('backend/assets/js/argon.js?v=1.1.0') }}"></script>
+    <!-- Demo JS - remove this in your project -->
+    <script src="{{ asset('backend/assets/js/demo.min.js') }}"></script>
 
-
-
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
     <script src="{{ asset('https://unpkg.com/sweetalert/dist/sweetalert.min.js')}}"></script>
-    <script>
+
+      <script>
         @if(Session::has('messege'))
           var type="{{Session::get('alert-type','info')}}"
           switch(type){

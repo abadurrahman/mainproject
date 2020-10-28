@@ -81,17 +81,17 @@
                 </div>
              </div>
 
-             <div class="col-lg-4">
+              <div class="col-lg-4">
               <div class="form-group">
                 <label class="form-control-label" >Selling Prize:</label>
-                  <input type="text" class="form-control" placeholder="selling prize" name="selling_price" required="">
+                  <input type="text" class="form-control" placeholder="selling prize" name="selling_price" >
                 </div>
              </div>
 
              <div class="col-lg-4">
               <div class="form-group">
                 <label class="form-control-label" >Discount Prize:</label>
-                  <input type="text" class="form-control" placeholder="discount prize" name="discount_price" >
+                  <input type="text" class="form-control" placeholder="discount prize" name="discount_price">
                 </div>
              </div>
 

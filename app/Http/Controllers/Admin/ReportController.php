@@ -8,6 +8,11 @@ use DB;
 
 class ReportController extends Controller
 {
+   public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+    
    public function TodayOrder()
     {
     	  $today=date('d-m-y');

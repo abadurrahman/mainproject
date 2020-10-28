@@ -12,9 +12,9 @@ use Illuminate\Support\Facades\Hash;
 class RoleController extends Controller
 {
 
-   public function __construct()
+    public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth:admin');
     }
 
    public function index()

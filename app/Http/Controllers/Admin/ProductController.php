@@ -14,6 +14,12 @@ use Image;
 
 class ProductController extends Controller
 {
+  
+     public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
+    
      public function index()
     {
     	$product=DB::table('products')->orderBy('id','DESC')->get();

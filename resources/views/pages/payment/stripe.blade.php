@@ -52,12 +52,7 @@
 
 <section id="cart_items">
 		<div class="container">
-			<div class="breadcrumbs">
-				<ol class="breadcrumb">
-				  <li><a href="{{url('/')}}">Home</a></li>
-				  <li class="active">Check out</li>
-				</ol>
-			</div><!--/breadcrums-->
+			<br><br><br>
 
 			<div class="step-one">
 				<h2 class="heading">Step1</h2>
@@ -191,10 +186,10 @@
                          <input type="hidden" name="ship_email" value="{{ $data['email'] }}">
                          <input type="hidden" name="ship_phone" value="{{ $data['phone'] }}">
                          <input type="hidden" name="ship_address" value="{{ $data['address'] }}">
-                         <input type="hidden" name="ship_city" value="{{ $data['city'] }}">
+                          <input type="hidden" name="ship_city" value="{{ $data['city'] }}">
                          <input type="hidden" name="payment_type" value="{{ $data['payment'] }}">
                           <button class="btn btn-info">Pay Now</button>
-							</form>
+					</form>
 							<br><br>
 							
 						</div>
