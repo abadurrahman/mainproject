@@ -26,7 +26,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
 </div>
 <div style="padding:25px;margin-top:-5.5rem">
   <div class="card mb-4">
@@ -80,6 +80,27 @@
                   <input type="text" class="form-control" name="product_color" data-role="tagsinput" id="color">
                 </div>
              </div>
+
+              <div class="col-md-4 ">
+               <div class="form-group">
+              <label class="form-control-label" for="example3cols1Input">Category</label>
+              <select class="form-control" id="exampleFormControlSelect1" name="category_id">
+                <option label="Choose Category"></option>
+                @foreach($category as $row)
+                      <option value="{{ $row->id }}">{{  $row->category_name }}</option>
+                @endforeach    
+               </select>
+             </div>
+            </div> 
+
+             <div class="col-md-4 ">
+               <div class="form-group">
+              <label class="form-control-label" for="example3cols1Input">Sub Category</label>
+              <select class="form-control" id="exampleFormControlSelect1" name="subcategory_id">
+                 
+               </select>
+             </div> 
+            </div> 
 
               <div class="col-lg-4">
               <div class="form-group">
@@ -221,12 +242,39 @@
         </form>  
         </div>
     </div>
-</div>
+</div> 
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
 </script>
 
+<script type="text/javascript">
+    $(document).ready(function() {
+         $('select[name="category_id"]').on('change', function(){
+             var category_id = $(this).val();
+             if(category_id) {
+                 $.ajax({
+                     url: "{{  url('/get/subcategory/') }}/"+category_id,
+                     type:"GET",
+                     dataType:"json",
+                     success:function(data) {
+                        var d =$('select[name="subcategory_id"]').empty();
+                           $.each(data, function(key, value){
 
+                               $('select[name="subcategory_id"]').append('<option value="'+ value.id +'">' + value.subcategory_name + '</option>');
+
+                           });
+  
+                     },
+                    
+                 });
+             } else {
+                 alert('danger');
+             }
+
+         });
+     });
+
+</script>
 
 
 <script>

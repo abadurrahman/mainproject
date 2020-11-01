@@ -3,6 +3,8 @@
 @section('title', 'SubCategoryPage')
 
 @section('content')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" crossorigin="anonymous">
+
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
@@ -68,17 +70,17 @@
            <div class="col-lg-4">
               <div class="form-group">
                 <label class="form-control-label" >Product size:</label>
-                  <input type="text" class="form-control" placeholder="size" name="product_size">
+                  <input type="text" class="form-control" name="product_size" id="size" data-role="tagsinput">
                 </div>
              </div>
              <div class="col-lg-4">
               <div class="form-group">
                 <label class="form-control-label" >Product Color:</label>
-                  <input type="text" class="form-control" placeholder="color" name="product_color">
+                  <input type="text" class="form-control" name="product_color" data-role="tagsinput" id="color">
                 </div>
              </div>
 
-             <div class="col-lg-4">
+             <div class="col-lg-4"> 
               <div class="form-group">
                 <label class="form-control-label" >Selling Prize:</label>
                   <input type="text" class="form-control" placeholder="selling prize" name="selling_price" required="">
@@ -103,7 +105,7 @@
               <select class="form-control" id="exampleFormControlSelect1" name="subcategory_id">
                  
                </select>
-             </div>
+             </div> 
             </div> 
 
              <div class="col-md-4 ">
@@ -177,33 +179,33 @@
           <div class="col-md-4" >
               <div class="form-group">
                 <div class="custom-control custom-checkbox mb-3">
-               <input class="custom-control-input" id="customCheck1" type="checkbox" name="newarrivals_one" value="1">
+               <input class="custom-control-input" id="customCheck1" type="checkbox" name=" image_1" value="1">
                <label class="custom-control-label" for="customCheck1">Image 1</label>
                </div>
               </div>
-          </div> 
+          </div>  
  
           <div class="col-md-4" >
               <div class="form-group">
                 <div class="custom-control custom-checkbox mb-3">
-               <input class="custom-control-input" id="customCheck6" type="checkbox" name="latest_design" value="1">
-               <label class="custom-control-label" for="customCheck6">Image 2</label>
+               <input class="custom-control-input" id="customCheck2" type="checkbox" name=" image_2" value="1">
+               <label class="custom-control-label" for="customCheck2">Image 2</label>
                </div>
               </div>
           </div> 
           <div class="col-md-4" >
               <div class="form-group">
                 <div class="custom-control custom-checkbox mb-3">
-               <input class="custom-control-input" id="customCheck8" type="checkbox" name="special_offer" value="1">
-               <label class="custom-control-label" for="customCheck8">Product 1</label>
+               <input class="custom-control-input" id="customCheck3" type="checkbox" name="product_1" value="1">
+               <label class="custom-control-label" for="customCheck3">Product 1</label>
                </div>
               </div>
           </div> 
           <div class="col-md-4">
               <div class="form-group">
                 <div class="custom-control custom-checkbox mb-3">
-               <input class="custom-control-input" id="customCheck8" type="checkbox" name="collection" value="1">
-               <label class="custom-control-label" for="customCheck8">Product 2</label>
+               <input class="custom-control-input" id="customCheck4" type="checkbox" name="product_2" value="1">
+               <label class="custom-control-label" for="customCheck4">Product 2</label>
                </div>
               </div>
           </div>
@@ -216,6 +218,8 @@
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
 </script>
+
+
 
 <script type="text/javascript">
     $(document).ready(function() {

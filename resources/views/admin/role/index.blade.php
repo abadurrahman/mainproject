@@ -56,8 +56,88 @@
                                     <span class="badge badge-danger">category</span>
                                     @else
                                     @endif
-                                 @if($row->tag == 1)
+                                 @if($row->subcategory == 1)
+                                    <span class="badge badge-success">subcategory</span>
+                                    @else
+                                    @endif
+                                     @if($row->tag == 1)
+                                    <span class="badge badge-info">tag</span>
+                                    @else
+                                    @endif
+                                     @if($row->coupon == 1)
+                                    <span class="badge badge-danger">coupon</span>
+                                    @else
+                                    @endif
+                                     @if($row->tag == 1)
                                     <span class="badge badge-success">tag</span>
+                                    @else
+                                    @endif
+                                     @if($row->slider == 1)
+                                    <span class="badge badge-info">slider</span>
+                                    @else
+                                    @endif
+                                     @if($row->brand == 1)
+                                    <span class="badge badge-danger">brand</span>
+                                    @else
+                                    @endif
+                                     @if($row->blog == 1)
+                                    <span class="badge badge-success">blog</span>
+                                    @else
+                                    @endif
+                                     @if($row->product == 1)
+                                    <span class="badge badge-info">product</span>
+                                    @else
+                                    @endif
+                                     @if($row->categorypages == 1)
+                                    <span class="badge badge-danger">categorypages</span>
+                                    @else
+                                    @endif
+                                     @if($row-> subcategorypages == 1)
+                                    <span class="badge badge-success">  subcategorypages</span>
+                                    @else
+                                    @endif
+                                     @if($row->order == 1)
+                                    <span class="badge badge-info">order</span>
+                                    @else
+                                    @endif
+                                     @if($row->report == 1)
+                                    <span class="badge badge-danger">report</span>
+                                    @else
+                                    @endif
+                                     @if($row->return == 1)
+                                    <span class="badge badge-success">return</span>
+                                    @else
+                                    @endif
+                                     @if($row->contact == 1)
+                                    <span class="badge badge-info">contact</span>
+                                    @else
+                                    @endif
+                                     @if($row->comment == 1)
+                                    <span class="badge badge-danger">comment</span>
+                                    @else
+                                    @endif
+                                     @if($row->role == 1)
+                                    <span class="badge badge-success">role</span>
+                                    @else
+                                    @endif
+                                     @if($row->advertise == 1)
+                                    <span class="badge badge-info">advertise</span>
+                                    @else
+                                    @endif
+                                     @if($row->seo == 1)
+                                    <span class="badge badge-danger">seo</span>
+                                    @else
+                                    @endif
+                                     @if($row->stock == 1)
+                                    <span class="badge badge-success">stock</span>
+                                    @else
+                                    @endif
+                                     @if($row->newslater == 1)
+                                    <span class="badge badge-info">newslater</span>
+                                    @else
+                                    @endif
+                                     @if($row->websetting == 1)
+                                    <span class="badge badge-success">websetting</span>
                                     @else
                                     @endif
                                  

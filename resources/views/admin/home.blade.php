@@ -4,6 +4,20 @@
 
 @section('content')
 
+@php
+  $date=date("d-m-y");
+  $month=date("F"); 
+  $year=date('Y');
+  $today=DB::table('orders')->where('date',$date)->sum('total');
+  $delevery=DB::table('orders')->where('date',$date)->where('status',3)->sum('total');
+  $month=DB::table('orders')->where('month',$month)->sum('total');
+  $year=DB::table('orders')->where('year',$year)->sum('total');
+  $return=DB::table('orders')->where('return_order',2)->sum('total');
+  $product=DB::table('products')->get();
+  $brand=DB::table('brands')->get();
+  $user=DB::table('users')->get();
+@endphp
+
 <!-- Header -->
   <div class="header bg-primary pb-6">
     <div class="container-fluid">
@@ -20,13 +34,13 @@
         </div>
         <!-- Card stats -->
         <div class="row">
-          <div class="col-xl-3 col-md-6">
+          <div class="col-xl-3 col-md-3">
             <div class="card card-stats">
               <!-- Card body -->
               <div class="card-body">
                 <div class="row">
                   <div class="col">
-                    <h5 class="card-title text-uppercase text-muted mb-0">Total Sales</h5>
+                    <h5 class="card-title text-uppercase text-muted mb-0">Today's Order</h5>
                     <span class="h2 font-weight-bold mb-0"></span>
                   </div>
                   <div class="col-auto">
@@ -36,18 +50,18 @@
                   </div>
                 </div>
                 <p class="mt-3 mb-0 text-sm">
-                  <span class="text-nowrap">Last 30 days</span>
+                  <span class="text-nowrap">$ {{ $today }}</span>
                 </p>
               </div>
             </div>
           </div>
-          <div class="col-xl-3 col-md-6">
+          <div class="col-xl-3 col-md-3">
             <div class="card card-stats">
               <!-- Card body -->
               <div class="card-body">
                 <div class="row">
                   <div class="col">
-                    <h5 class="card-title text-uppercase text-muted mb-0">Total Orders</h5>
+                    <h5 class="card-title text-uppercase text-muted mb-0">Today Delevered</h5>
                     <span class="h2 font-weight-bold mb-0">{{-- {{ $order_count }} --}}</span>
                   </div>
                   <div class="col-auto">
@@ -57,18 +71,18 @@
                   </div>
                 </div>
                 <p class="mt-3 mb-0 text-sm">
-                  <span class="text-nowrap">Since last month</span>
+                  <span class="text-nowrap">${{ $delevery }}</span>
                 </p>
               </div>
             </div>
           </div>
-          <div class="col-xl-3 col-md-6">
+          <div class="col-xl-3 col-md-3">
             <div class="card card-stats">
               <!-- Card body -->
               <div class="card-body">
                 <div class="row">
                   <div class="col">
-                    <h5 class="card-title text-uppercase text-muted mb-0">Products</h5>
+                    <h5 class="card-title text-uppercase text-muted mb-0">This Month </h5>
                     <span class="h2 font-weight-bold mb-0"></span>
                   </div>
                   <div class="col-auto">
@@ -79,18 +93,18 @@
                 </div>
                 <p class="mt-3 mb-0 text-sm">
                   <span class="text-danger mr-2"> </span>
-                  <span class="text-nowrap">Out of Stock</span>
+                  <span class="text-nowrap">$ {{ $month }}</span>
                 </p>
               </div>
             </div>
           </div>
-          <div class="col-xl-3 col-md-6">
+          <div class="col-xl-3 col-md-3">
             <div class="card card-stats">
               <!-- Card body -->
               <div class="card-body">
                 <div class="row">
                   <div class="col">
-                    <h5 class="card-title text-uppercase text-muted mb-0">Customers</h5>
+                    <h5 class="card-title text-uppercase text-muted mb-0">This Year's</h5>
                     <span class="h2 font-weight-bold mb-0">{{-- {{ $customer_count }} --}}</span>
                   </div>
                   <div class="col-auto">
@@ -101,7 +115,96 @@
                 </div>
                 <p class="mt-3 mb-0 text-sm">
                   <span class="text-success mr-2">{{-- {{ $latest_customers }} --}}</span>
-                  <span class="text-nowrap">Customer from last 30d</span>
+                  <span class="text-nowrap">$ {{ $year }}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+         <div class="row">
+          <div class="col-xl-3 col-md-3">
+            <div class="card card-stats">
+              <!-- Card body -->
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">Total Return</h5>
+                    <span class="h2 font-weight-bold mb-0"></span>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
+                      <i class="ni ni-active-40"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="mt-3 mb-0 text-sm">
+                  <span class="text-nowrap">$ {{ $return }}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-md-3">
+            <div class="card card-stats">
+              <!-- Card body -->
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">Product</h5>
+                    <span class="h2 font-weight-bold mb-0">{{-- {{ $order_count }} --}}</span>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
+                      <i class="ni ni-chart-pie-35"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="mt-3 mb-0 text-sm">
+                  <span class="text-nowrap">{{ count($product) }}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-md-3">
+            <div class="card card-stats">
+              <!-- Card body -->
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">Brand </h5>
+                    <span class="h2 font-weight-bold mb-0"></span>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
+                      <i class="ni ni-money-coins"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="mt-3 mb-0 text-sm">
+                  <span class="text-danger mr-2"> </span>
+                  <span class="text-nowrap">{{ count($brand) }}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-md-3">
+            <div class="card card-stats">
+              <!-- Card body -->
+              <div class="card-body">
+                <div class="row">
+                  <div class="col">
+                    <h5 class="card-title text-uppercase text-muted mb-0">User</h5>
+                    <span class="h2 font-weight-bold mb-0">{{-- {{ $customer_count }} --}}</span>
+                  </div>
+                  <div class="col-auto">
+                    <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
+                      <i class="ni ni-chart-bar-32"></i>
+                    </div>
+                  </div>
+                </div>
+                <p class="mt-3 mb-0 text-sm">
+                  <span class="text-success mr-2">{{-- {{ $latest_customers }} --}}</span>
+                  <span class="text-nowrap">{{ count($user) }}</span>
                 </p>
               </div>
             </div>
@@ -148,35 +251,7 @@
             </div>
           </div>
         </div>
-        <div class="col-xl-4">
-          <div class="card">
-            <div class="card-header bg-transparent">
-              <div class="row align-items-center">
-                <div class="col">
-                  <h6 class="text-uppercase text-muted ls-1 mb-1">Performance</h6>
-                  <h5 class="h3 mb-0">Total orders</h5>
-                </div>
-              </div>
-            </div>
-            <div class="card-body">
-              <!-- Chart -->
-              <div class="chart">
-                <canvas id="chart-bars" class="chart-canvas"></canvas>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
-      <!-- Footer -->
-      <footer class="footer pt-0">
-        <div class="row align-items-center justify-content-lg-between">
-          <div class="col-lg-6">
-            <div class="copyright text-center text-lg-left text-muted">
-              &copy; 2020 <a href="#" class="font-weight-bold ml-1" target="_blank">ARROW IT</a>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
 
 

@@ -51,7 +51,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 <div class="header">
     <div class="container">
-        <ul>
+        <ul> 
             <li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><a href="mailto:info@example.com">{{$setting->email}}</a></li>
            <li><a href="#" data-toggle="modal" data-target="#exampleModal">My Order Traking</a></li>
             @php 
@@ -77,9 +77,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             <h1><a href="{{url('/')}}"><img src="{{ $setting->logo}}" style="width: 150px; height: 60px"></a></h1>
         </div>
         <div class="col-md-6 header-middle">
-            <form>
+           <form action="{{ route('product.search') }}" method="post">
+             @csrf
                 <div class="search">
-                    <input type="search" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}" required="">
+                    <input type="search" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}" required="" name="search">
                 </div>
                 <div class="section_room">
                     <select id="country" onchange="change_country(this.value)" class="frm-field required">
@@ -389,8 +390,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     </button>
                                   </div>
                                   <div class="modal-body">
-                                     <form method="post" action="">
-                                       
+                                     <form method="post" action="{{ route('order.tracking') }}">
+                                       @csrf
                                          <div class="form-row">
                                               <label>Status Code</label>
                                                <input type="text" name="code" required="" class="form-control" placeholder="Your Order Status Code">

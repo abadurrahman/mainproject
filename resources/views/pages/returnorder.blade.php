@@ -12,10 +12,9 @@
                    <thead>
                      <tr>
                        <th scope="col">PaymentType</th>
-                       <th scope="col">Payment ID</th>
+                       <th scope="col">Return</th>
                        <th scope="col">Amount</th>
                        <th scope="col">Date</th>
-                        <th scope="col">Status Code</th>
                         <th scope="col">Status </th>
                         <th scope="col">Action</th>
                      </tr>
@@ -24,7 +23,15 @@
                     @foreach($order as $row)
                      <tr>
                        <th >{{ $row->payment_type }}</th>
-                       <td>{{ $row->payment_id }}</td>
+                       <td>
+                           @if($row->return_order == 0)
+                             <span class="badge badge-warning">No Request</span>
+                            @elseif($row->return_order == 1)
+                            <span class="badge badge-info">Pending</span>
+                            @elseif($row->return_order == 2) 
+                             <span class="badge badge-info">Success </span>
+                            @endif
+                       </td>
                        <td>{{ $row->total }} $</td>
                        <td>{{ $row->date }}</td>
                        <td>
@@ -40,9 +47,14 @@
                          <span class="badge badge-danger">Cancel </span>
                          @endif
                        </td>
-                       <td>{{ $row->status_code }}</td>
                        <td>
-                         <a href="#" class="btn btn-sm btn-info">View</a>
+                        @if($row->return_order == 0)
+                         <a href="{{ url('/request/return/'.$row->id) }}" class="btn btn-sm btn-danger" id="return">Return</a>
+                         @elseif($row->return_order == 1)
+                            <span class="badge badge-info">Pending</span>
+                     @elseif($row->return_order == 2) 
+                             <span class="badge badge-info">Success </span>
+                         @endif
                        </td>
                      </tr>
                     @endforeach

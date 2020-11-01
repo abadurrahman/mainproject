@@ -1,6 +1,10 @@
 <?php 
-
+ 
 Route::get('/', function () {return view('pages.index');});
+
+    //get sub cate by ajax
+Route::get('get/subcategory/{category_id}','Admin\ProductController@GetSubcat');
+Route::get('get/subcategory/{category_id}','Admin\SubCategoryPageController@GetSubcatpage');
 
 //auth & user
 Auth::routes(['verify' => true]);
@@ -115,7 +119,7 @@ Route::get('active/subcategorypages/{id}','Admin\SubCategoryPageController@Activ
 Route::get('delete/subcategorypages/{id}','Admin\SubCategoryPageController@DeleteSubcategorypages');
 Route::get('view/subcategorypages/{id}','Admin\SubCategoryPageController@ViewSubcategorypages');
 Route::get('edit/subcategorypages/{id}','Admin\SubCategoryPageController@EditSubcategorypages');
-Route::post('update/subcategorypages/withoutphoto/{id}','Admin\SubCategoryPageController@UpdateSubcategorypageWithoutPhoto');
+Route::post('update/subcategorypage/withoutphoto/{id}','Admin\SubCategoryPageController@UpdateSubcategorypageWithoutPhoto');
 Route::post('update/subcategorypages/photo/{id}','Admin\SubCategoryPageController@UpdateSubcategorypagePhoto');
 
 
@@ -172,6 +176,12 @@ Route::post('admin/search/byyear', 'Admin\ReportController@searchByYear')->name(
 Route::post('admin/search/bymonth', 'Admin\ReportController@searchByMonth')->name('search.by.month');
 Route::post('admin/search/bydate', 'Admin\ReportController@searchByDate')->name('search.by.date');
 
+//return products admin panel
+ Route::get('admin/return/request', 'Admin\ReturnController@request')->name('admin.return.request');
+ Route::get('/admin/approve/return/{id}', 'Admin\ReturnController@ApproveReturn');
+ Route::get('admin/all/return', 'Admin\ReturnController@AllReturn')->name('admin.all.return');
+
+
 //--websetting
 Route::get('admin/add/websetting', 'Admin\WebsettingController@create')->name('add.websetting'); 
 Route::get('admin/all/websetting', 'Admin\WebsettingController@index')->name('all.websetting');    
@@ -182,8 +192,8 @@ Route::post('update/websetting/{id}','Admin\WebsettingController@UpdateSetting')
 Route::post('update/websettingwithphoto/{id}','Admin\WebsettingController@UpdateSettingPhoto');
 
 //user role
-Route::get('admin/create/role', 'Admin\RoleController@index')->name('create.user.role');
-Route::get('admin/create/admin', 'Admin\RoleController@create')->name('create.admin');
+Route::get('admin/create/role', 'Admin\RoleController@UserRole')->name('create.user.role');
+Route::get('admin/create/admin', 'Admin\RoleController@UserCreate')->name('create.admin');
 Route::post('admin/store/admin', 'Admin\RoleController@UserStore')->name('store.admin');
 Route::get('delete/admin/{id}', 'Admin\RoleController@UserDelete');
 Route::get('edit/admin/{id}', 'Admin\RoleController@UserEdit');
@@ -197,8 +207,8 @@ Route::post('update/profile', 'Admin\RoleController@update_profile')->name('upda
 //--newslater
 Route::get('admin/newslater', 'SubscriberController@Newslater')->name('admin.newslater'); 
 Route::get('delete/sub/{id}','SubscriberController@DeleteSub'); 
-Route::get('admin/seo', 'SubscriberController@Seo')->name('admin.seo');
-Route::post('admin/update/seo', 'SubscriberController@UpdateSeo')->name('update.seo');
+Route::get('admin/seo', 'SeoController@Seo')->name('admin.seo');
+Route::post('admin/update/seo', 'SeoController@UpdateSeo')->name('update.seo');
 
 
 //HomeAdvertise
@@ -206,7 +216,8 @@ Route::prefix('/admin')->namespace('Admin')->group(function(){
     Route::resource('header-advertise', 'HeaderAdvertiseController');
 });
 
-
+//stock
+Route::get('admin/product/stock', 'StockController@Stock')->name('admin.product.stock');
 
 
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
@@ -248,6 +259,10 @@ Route::get('payment/page/','CartController@PymentPage')->name('payment.step');
 //payment methods
 Route::post('user/payment/process/','PaymentController@payment')->name('payment.process');
 Route::post('user/stripe/charge/','PaymentController@STripeCharge')->name('stripe.charge');
-
+//return order
 Route::get('success/list/','PaymentController@SuccessList')->name('success.orderlist');
 Route::get('request/return/{id}','PaymentController@RequestReturn');
+
+//tracking
+Route::post('order/tracking', 'FrontController@OrderTracking')->name('order.tracking');
+ Route::post('product/search', 'FrontController@ProductSearch')->name('product.search');

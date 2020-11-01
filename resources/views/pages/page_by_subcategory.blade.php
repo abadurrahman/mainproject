@@ -1,5 +1,12 @@
 @extends('layouts.app')
 @section('content')
+
+@php 
+    $product_one=DB::table('subcatpages')->where('product_1',1)->where('status',1)->get();
+    $product_two=DB::table('subcatpages')->where('product_2',1)->where('status',1)->get();
+   
+@endphp
+
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
 		function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!-- //for-mobile-apps -->
@@ -234,81 +241,39 @@
 					explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut
 					odit aut fugit. </p>
 				</div>
-				<div class="clearfix"></div>
+				<div class="clearfix"></div> 
 			</div>
+			  @foreach($product_one as $row)
 				<div class="col-md-4 product-men no-pad-men">
 					<div class="men-pro-item simpleCart_shelfItem">
 						<div class="men-thumb-item">
-							<img src="images/ep2.png" alt="" class="pro-image-front">
-							<img src="images/ep2.png" alt="" class="pro-image-back">
+							<img src="{{asset($row->image_one)}}" alt="" class="pro-image-front">
+							<img src="{{asset($row->image_one)}}" alt="" class="pro-image-back">
 										<div class="men-cart-pro">
 											<div class="inner-men-cart-pro">
-												<a href="single.html" class="link-product-add-cart">Quick View</a>
+												<a href="#" class="link-product-add-cart">Quick View</a>
 											</div>
 										</div>
 										<span class="product-new-top">New</span>
 										
 						</div>
 						<div class="item-info-product ">
-									<h4><a href="single.html">Watches</a></h4>
+									<h4><a href="single.html">{{$row->product_name}}</a></h4>
 									<div class="info-product-price">
-										<span class="item_price">$45.99</span>
+										<span class="item_price">${{$row->selling_price}}</span>
 										<del>$69.71</del>
 									</div>
 									<a href="#" class="item_add single-item hvr-outline-out button2">Add to cart</a>									
 						</div>
 					</div>
 				</div>
-				<div class="col-md-4 product-men no-pad-men">
-					<div class="men-pro-item simpleCart_shelfItem">
-						<div class="men-thumb-item">
-							<img src="images/a2.png" alt="" class="pro-image-front">
-							<img src="images/a2.png" alt="" class="pro-image-back">
-										<div class="men-cart-pro">
-											<div class="inner-men-cart-pro">
-												<a href="single.html" class="link-product-add-cart">Quick View</a>
-											</div>
-										</div>
-										<span class="product-new-top">New</span>
-										
-						</div>
-						<div class="item-info-product ">
-									<h4><a href="single.html">Blazers</a></h4>
-									<div class="info-product-price">
-										<span class="item_price">$45.99</span>
-										<del>$69.71</del>
-									</div>
-									<a href="#" class="item_add single-item hvr-outline-out button2">Add to cart</a>									
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 product-men no-pad-men">
-					<div class="men-pro-item simpleCart_shelfItem">
-						<div class="men-thumb-item">
-							<img src="images/mw2.png" alt="" class="pro-image-front">
-							<img src="images/mw2.png" alt="" class="pro-image-back">
-										<div class="men-cart-pro">
-											<div class="inner-men-cart-pro">
-												<a href="single.html" class="link-product-add-cart">Quick View</a>
-											</div>
-										</div>
-										<span class="product-new-top">New</span>
-										
-						</div>
-						<div class="item-info-product ">
-									<h4><a href="single.html">Shirts</a></h4>
-									<div class="info-product-price">
-										<span class="item_price">$45.99</span>
-										<del>$69.71</del>
-									</div>
-									<a href="#" class="item_add single-item hvr-outline-out button2">Add to cart</a>									
-						</div>
-					</div>
-				</div>
+				 @endforeach
 				
 				<div class="clearfix"></div>
 		</div>
+		
 		<div class="clearfix"></div>
+
 		<div class="single-pro">
 			
 			<div class="col-md-3 product-men">

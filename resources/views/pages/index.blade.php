@@ -16,7 +16,7 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 <!-- content -->
  
-<div class="new_arrivals">
+<div class="new_arrivals"> 
     <div class="container">
         <h3><span>new </span>arrivals</h3>
         <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium</p>
@@ -181,7 +181,7 @@
                                   @if($row->discount_price == NULL)
                                      <span class="product-new-top">New</span>
                                     @else
-                                    
+                                        
                                      @php
                                       $amount=$row->selling_price - $row->discount_price;
                                       $discount=$amount/$row->selling_price * 100;

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
- <html>
+ <html> 
 
  <head>
    <meta charset="utf-8">
@@ -73,7 +73,7 @@
                  <span class="nav-link-text">Dashboard</span>
                </a>
              </li>
-           
+           @if(Auth::user()->category == 1)
            <li class="nav-item">
                 <a class="nav-link" href="#cat" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="cat">
                     <i class="ni ni-archive-2 text-green"></i>
@@ -91,7 +91,10 @@
                     </ul>
                 </div>
             </li>
-
+             @else
+            @endif
+           
+           @if(Auth::user()->subcategory == 1)
             <li class="nav-item">
                 <a class="nav-link" href="#subcategory" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="subcategory">
                     <i class="ni ni-archive-2 text-green"></i>
@@ -109,8 +112,10 @@
                     </ul>
                 </div>
             </li>
+             @else
+            @endif
              
-          
+          @if(Auth::user()->tag == 1)
             <li class="nav-item">
                 <a class="nav-link" href="#tag" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="tag">
                     <i class="ni ni-archive-2 text-green"></i>
@@ -128,7 +133,10 @@
                     </ul>
                 </div>
             </li>
+            @else
+            @endif
 
+            @if(Auth::user()->coupon == 1)
              <li class="nav-item">
                 <a class="nav-link" href="#coupon" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="coupon">
                     <i class="ni ni-badge text-info"></i>
@@ -146,7 +154,10 @@
                     </ul>
                 </div>
             </li>
+            @else
+            @endif
 
+           @if(Auth::user()->slider == 1)
             <li class="nav-item">
                 <a class="nav-link" href="#slider" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="slider">
                     <i class="ni ni-archive-2 text-green"></i>
@@ -164,7 +175,10 @@
                     </ul>
                 </div>
             </li>
+            @else
+            @endif
 
+            @if(Auth::user()->brand == 1)
             <li class="nav-item">
                 <a class="nav-link" href="#brand" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="brand">
                     <i class="ni ni-archive-2 text-green"></i>
@@ -182,8 +196,10 @@
                     </ul>
                 </div>
             </li>
+            @else
+            @endif
 
-
+            @if(Auth::user()->blog == 1)
             <li class="nav-item">
                 <a class="nav-link" href="#blog" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="blog">
                     <i class="ni ni-archive-2 text-green"></i>
@@ -201,7 +217,10 @@
                     </ul>
                 </div>
             </li>
+            @else
+            @endif
 
+           @if(Auth::user()->product == 1)
             <li class="nav-item">
                 <a class="nav-link" href="#product" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="product">
                     <i class="ni ni-archive-2 text-green"></i>
@@ -227,7 +246,10 @@
                     </ul>
                 </div>
             </li>
+            @else
+            @endif
 
+           @if(Auth::user()->categorypages == 1)
             <li class="nav-item">
                 <a class="nav-link" href="#categorypages" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="categorypages">
                     <i class="ni ni-archive-2 text-green"></i>
@@ -245,7 +267,10 @@
                     </ul>
                 </div>
             </li>
+            @else
+            @endif
 
+           @if(Auth::user()->subcategorypages == 1)
             <li class="nav-item">
                 <a class="nav-link" href="#subcategorypages" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="subcategorypages">
                     <i class="ni ni-archive-2 text-green"></i>
@@ -263,8 +288,10 @@
                     </ul>
                 </div>
             </li>
+            @else
+            @endif
 
-
+               @if(Auth::user()->order == 1)
               <li class="nav-item">
                 <a class="nav-link" href="#Order" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="Order">
                     <i class="ni ni-archive-2 text-green"></i>
@@ -294,7 +321,10 @@
                     </ul>
                 </div>
             </li>
+            @else
+            @endif
 
+            @if(Auth::user()->report == 1)
             <li class="nav-item">
                 <a class="nav-link" href="#Report" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="Report">
                     <i class="ni ni-archive-2 text-green"></i>
@@ -320,7 +350,77 @@
                     </ul>
                 </div>
             </li>
-         
+            @else
+            @endif
+
+           @if(Auth::user()->return == 1)
+            <li class="nav-item">
+                <a class="nav-link" href="#Return" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="Return">
+                    <i class="ni ni-archive-2 text-green"></i>
+                    <span class="nav-link-text">Return Order</span>
+                </a>
+                <div class="collapse" id="Return">
+                    <ul class="nav nav-sm flex-column">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.return.request') }}" class="nav-link ">Return Request</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.all.return') }}" class="nav-link ">All Return</a>
+
+                        </li>
+                        
+                    </ul>
+                </div>
+            </li>
+            @else
+            @endif
+
+
+          @if(Auth::user()->contact == 1)
+            <li class="nav-item">
+                <a class="nav-link" href="#Contact" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="Contact">
+                    <i class="ni ni-archive-2 text-green"></i>
+                    <span class="nav-link-text">Contact Message</span>
+                </a>
+                <div class="collapse" id="Contact">
+                    <ul class="nav nav-sm flex-column">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link ">New Message</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link ">All Message</a>
+
+                        </li>
+                        
+                    </ul>
+                </div>
+            </li>
+            @else
+            @endif
+
+             @if(Auth::user()->comment == 1)
+            <li class="nav-item">
+                <a class="nav-link" href="#Comment" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="Comment">
+                    <i class="ni ni-archive-2 text-green"></i>
+                    <span class="nav-link-text">Product Comment</span>
+                </a>
+                <div class="collapse" id="Comment">
+                    <ul class="nav nav-sm flex-column">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link ">New Comment</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link ">All Comment</a>
+
+                        </li>
+                        
+                    </ul>
+                </div>
+            </li>
+            @else
+            @endif
+   
+           @if(Auth::user()->role == 1)      
             <li class="nav-item">
                 <a class="nav-link" href="#user" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="user">
                     <i class="ni ni-single-02 text-pink"></i>
@@ -338,7 +438,10 @@
                     </ul>
                 </div>
             </li>
+            @else
+            @endif
 
+            @if(Auth::user()->advertise == 1)
              <li class="nav-item">
                <a class="nav-link" href="#navbar-components" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-components">
                  <i class="ni ni-app text-info"></i>
@@ -357,23 +460,45 @@
                    </li>
                  </ul>
                </div>
-             </li>
+             </li> 
+             @else
+            @endif
+
+             @if(Auth::user()->seo == 1)
               <li class="nav-item">
                <a class="nav-link" href="{{ route('admin.seo') }}">
                   <i class="ni ni-archive-2 text-green"></i>
                  <span class="nav-link-text">SEO</span>
                </a>
              </li>
+             @else
+            @endif
+
+            @if(Auth::user()->stock == 1)
+              <li class="nav-item">
+               <a class="nav-link" href="{{ route('admin.product.stock') }}">
+                  <i class="ni ni-archive-2 text-green"></i>
+                 <span class="nav-link-text">Stock</span>
+               </a>
+             </li>
+             @else
+            @endif
              
+
+             @if(Auth::user()->newslater == 1)
              <li class="nav-item">
                <a class="nav-link" href="{{ route('admin.newslater') }}">
                  <i class="ni ni-bell-55 text-red"></i>
                  <span class="nav-link-text">Subscriber</span>
                </a>
              </li>
+             @else
+            @endif
+
+             @if(Auth::user()->websetting == 1)
             <li class="nav-item">
                 <a class="nav-link" href="#setting" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="setting">
-                    <i class="ni ni-single-02 text-pink"></i>
+                      <i class="ni ni-archive-2 text-green"></i>
                     <span class="nav-link-text">Web Settings</span>
                 </a>
                 <div class="collapse" id="setting">
@@ -387,6 +512,8 @@
                     </ul>
                 </div>
             </li>
+            @else
+            @endif
            </ul>
 
          </div>

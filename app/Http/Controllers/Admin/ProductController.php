@@ -22,15 +22,20 @@ class ProductController extends Controller
     
      public function index()
     {
-    	$product=DB::table('products')->orderBy('id','DESC')->get();
+      $product=DB::table('products')
+        ->join('categories','products.category_id','categories.id')
+        ->join('brands','products.brand_id','brands.id')
+        ->select('products.*','categories.category_name','brands.brand_name')
+        ->get();
         return view('admin.product.index',compact('product'));
 
     }
 
-    public function create()
+   public function create()
     {
-
-    	return view('admin.product.create');
+      $category=DB::table('categories')->get();
+      $brand=DB::table('brands')->get();
+      return view('admin.product.create',compact('category','brand'));
     }
 
 
@@ -538,7 +543,12 @@ class ProductController extends Controller
         }
     }
 
-
+     //subcategory collect by ajax request
+    public function GetSubcat($category_id)
+    {
+      $cat = DB::table("subcategories")->where("category_id",$category_id)->get();
+        return json_encode($cat);
+    }
     
 
 }

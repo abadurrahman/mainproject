@@ -154,40 +154,40 @@
           <div class="col-md-4" >
               <div class="form-group">
                 <div class="custom-control custom-checkbox mb-3">
-               <input class="custom-control-input" id="customCheck6" type="checkbox" name="latest_design" value="1" <?php if ($subcategorypage->image_1 == 1) {
+               <input class="custom-control-input" id="customCheck1" type="checkbox" name="image_1" value="1" <?php if ($subcategorypage->image_1 == 1) {
                     echo "checked";
                   }?>>
-               <label class="custom-control-label" for="customCheck6">Latest Design</label>
+               <label class="custom-control-label" for="customCheck1">Image_1</label>
                </div>
               </div>
           </div> 
           <div class="col-md-4" >
               <div class="form-group">
                 <div class="custom-control custom-checkbox mb-3">
-               <input class="custom-control-input" id="customCheck8" type="checkbox" name="special_offer" value="1" <?php if ($subcategorypage->image_2 == 1) {
+               <input class="custom-control-input" id="customCheck2" type="checkbox" name="image_2" value="1" <?php if ($subcategorypage->image_2 == 1) {
                     echo "checked";
                   }?>>
-               <label class="custom-control-label" for="customCheck8">Special Offer</label>
+               <label class="custom-control-label" for="customCheck2">Image_2</label>
                </div>
               </div>
           </div> 
           <div class="col-md-4">
               <div class="form-group">
                 <div class="custom-control custom-checkbox mb-3">
-               <input class="custom-control-input" id="customCheck8" type="checkbox" name="collection" value="1" <?php if ($subcategorypage->product_1 == 1) {
+               <input class="custom-control-input" id="customCheck3" type="checkbox" name="product_1" value="1" <?php if ($subcategorypage->product_1 == 1) {
                     echo "checked";
                   }?>>
-               <label class="custom-control-label" for="customCheck8">Collection</label>
+               <label class="custom-control-label" for="customCheck3">Product_1</label>
                </div>
               </div>
           </div>
           <div class="col-md-4">
               <div class="form-group">
                 <div class="custom-control custom-checkbox mb-3">
-               <input class="custom-control-input" id="customCheck8" type="checkbox" name="collection" value="1" <?php if ($subcategorypage->product_2 == 1) {
+               <input class="custom-control-input" id="customCheck4" type="checkbox" name="product_2" value="1" <?php if ($subcategorypage->product_2 == 1) {
                     echo "checked";
                   }?>>
-               <label class="custom-control-label" for="customCheck8">Collection</label>
+               <label class="custom-control-label" for="customCheck4">Product_2</label>
                </div>
               </div>
           </div>

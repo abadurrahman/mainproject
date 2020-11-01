@@ -35,7 +35,7 @@ class SubCategoryPageController extends Controller
 
 
   //subcategory collect by ajax request
-    public function GetSubcat($category_id)
+    public function GetSubcatpage($category_id)
     {
     	$cat = DB::table("subcategories")->where("category_id",$category_id)->get();
         return json_encode($cat);
@@ -182,14 +182,14 @@ class SubCategoryPageController extends Controller
                      'messege'=>'Successfully subcatpages Updated ',
                      'alert-type'=>'success'
                     );
-             return Redirect()->route('all.subcatpages')->with($notification);
+             return Redirect()->route('all.subcategorypages')->with($notification);
 
         }else{
             $notification=array(
                      'messege'=>'Nothing To Updated ',
                      'alert-type'=>'success'
                     );
-             return Redirect()->route('all.subcatpages')->with($notification);
+             return Redirect()->route('all.subcategorypages')->with($notification);
         }
     }
 
@@ -269,7 +269,7 @@ class SubCategoryPageController extends Controller
                      'messege'=>'Image One and Two Updated ',
                      'alert-type'=>'success'
                     );
-             return Redirect()->route('all.subcatpages')->with($notification);
+             return Redirect()->route('all.subcategorypages')->with($notification);
            
 
 
@@ -293,7 +293,7 @@ class SubCategoryPageController extends Controller
                      'messege'=>'Image One and Two Updated ',
                      'alert-type'=>'success'
                     );
-             return Redirect()->route('all.subcatpages')->with($notification);
+             return Redirect()->route('all.subcategorypages')->with($notification);
           
           }if($request->has('image_one') && $request->has('image_two') && $request->has('image_three') && $request->has('image_four') ){
            unlink($old_one);
@@ -320,10 +320,11 @@ class SubCategoryPageController extends Controller
                      'messege'=>'Image One and Two Updated ',
                      'alert-type'=>'success'
                     );
-             return Redirect()->route('all.subcatpages')->with($notification);
+             return Redirect()->route('all.subcategorypages')->with($notification);
           
 
         }
-         return Redirect()->route('all.subcatpages');
+         return Redirect()->route('all.subcategorypages');
     }
+   
 }
