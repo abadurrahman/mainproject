@@ -3,7 +3,7 @@
 @section('title', 'Category')
 
 @section('content')
-
+ 
 @php 
   $brand=DB::table('brands')->get();
   $category=DB::table('categories')->get();

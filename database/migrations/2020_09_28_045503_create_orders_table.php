@@ -17,8 +17,8 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->string('payment_type')->nullable();
             $table->string('user_id')->nullable();
+            $table->string('return_order')->nullable();
             $table->string('payment_id')->nullable();
-            $table->string('payment_type')->nullable();
             $table->string('paying_amount')->nullable();
             $table->string('blnc_transection')->nullable();
             $table->string('stripe_order_id')->nullable();
